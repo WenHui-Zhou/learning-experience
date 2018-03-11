@@ -212,3 +212,15 @@ Excel
     df.to_excel('foo.xlsx', sheet_name='Sheet1') 写excel
     pd.read_excel('foo.xlsx', 'Sheet1', index_col=None, na_values=['NA']) 读excel
     
+**Series层次化索引**
+
+当存在多个索引的时候，需要划分层次，例如：
+
+    data = Series([12,34,34,23,23],index = [['2001','2001','2001','2002','2002'],['apple','banana','watermelon','apple','watermelon']])
+    data.index.names = ['year','fruit']  将这两个index分别命名为year与fruit。
+    可以通过一个层次进行分析：data.sum(level = 'year')(或者fruit)
+
+DataFrame的层次化索引：
+
+    设置方式为：df = df.new_index(['year','fruit'])
+    其中year,fruit为df中的存在的两列
