@@ -8,10 +8,35 @@ Series
 
      s = pd.Series([1,3,5,np.nan,6,8])
 
+**Series的创建**
+
+ - 通过一维数组：n = Series(arr), 指定索引：n = Series(arr, index = index_array)
+ - 通过字典来创建：n = Series({'la':1,'ha':2,'hei':3})
+
+**Series可以通过索引取值或者顺序序号取值**
+
+ - Series['la'] 或者Series[0]
+ - numpy的运算在Series中都保留
+
+**Series缺失值检测**
+
+ - pandas中的isnull或notnull函数可用于Series缺失值的检测 `pd.isnull(scores)`
+ - numpy中的isnan可用于缺失值检测：`np.isnan(scores)`
+
+**Series自动对齐**
+
+不同Series间进行算术运算会自动对齐，相同索引的放在一起计算。
+
+    price = pd.Series([1,2,3,4],index=['p1','p4','p3','p2'])
+    table = pd.Series([4,5,6,7],index = ['p4','p3','p1','p2'])
+    table*price   #得出的结果是索引相对齐后相乘的结果
+
 DataFrame
 ---------
 
 创建一个二维的，异构的，可变结构的数组。
+
+    pd.DataFrame([[1,2,3],[4,5,6]]) 得到一个两行三列的矩阵，而且包含行和列序号
 
 DataFrame 共六列，每列有四个随机数，其中index=dates将data作为序数，四列的列名分别为A，B，C，D。
 
